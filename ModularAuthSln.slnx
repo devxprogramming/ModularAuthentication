@@ -1,0 +1,8 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/ModularAuth.Application/ModularAuth.Application.csproj" />
+    <Project Path="src/ModularAuth.Domain/ModularAuth.Domain.csproj" />
+    <Project Path="src/ModularAuth.Infrastructure/ModularAuth.Infrastructure.csproj" />
+    <Project Path="src/ModularAuth.WebAPI/ModularAuth.WebAPI.csproj" />
+  </Folder>
+</Solution>
