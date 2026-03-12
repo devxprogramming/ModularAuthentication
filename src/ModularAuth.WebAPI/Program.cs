@@ -1,5 +1,6 @@
 using ModularAuth.Application;
 using ModularAuth.Infrastructure;
+using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,6 +24,10 @@ if (app.Environment.IsDevelopment())
         c.SwaggerEndpoint("/swagger/v1/swagger.json", "Modular Athentication v1");
         c.RoutePrefix = string.Empty;
     });
+    app.MapScalarApiReference();
+
+    // allow cors
+    app.UseCors(option => option.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 }
 if (!app.Environment.IsDevelopment())
 {
