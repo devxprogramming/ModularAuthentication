@@ -1,0 +1,52 @@
+services:
+  # Database Service
+  modularauth-db:
+    image: mysql:8.0
+    container_name: modularauth-db
+    # REMOVE this if you don't need external access from your PC
+    # ports:
+    #   - "3306:3306" 
+    env_file:
+      - .env
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    volumes:
+      - mysql-data:/var/lib/mysql # Use named volume, cleaner than ./mysql-data
+      - ./scripts/init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - modularauth-network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # WebAPI service
+  modularauth-api:
+    container_name: modularauth-api
+    build: .
+    ports:
+      - "5003:8080"
+    env_file:
+      - .env
+    environment:
+      - ASPNETCORE_URLS=${ASPNETCORE_URLS}
+      - ASPNETCORE_ENVIRONMENT=${ASPNETCORE_ENVIRONMENT}
+      - ConnectionStrings__DefaultConnection=${DB_CONNECTION_STRING}
+    volumes:
+      - ./logs:/app/logs
+    networks:
+      - modularauth-network
+    depends_on:
+      modularauth-db:
+        condition: service_healthy
+
+networks:
+  modularauth-network:
+    driver: bridge
+
+volumes:
+  mysql-data:
