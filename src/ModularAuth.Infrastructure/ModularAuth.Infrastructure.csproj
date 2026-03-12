@@ -1,14 +1,27 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
-    <ProjectReference Include="../ModularAuth.Application/ModularAuth.Application.csproj" />
+    <Folder Include="Persistence/" />
+    <Folder Include="Security/" />
+    <Folder Include="Services/Authentication/JWTServices/" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Data/" />
-    <Folder Include="Data/DbConnection/" />
-    <Folder Include="Data/Repositories/" />
-    <Folder Include="Persistence/" />
+    <PackageReference Include="BCrypt.Net-Next" Version="4.1.0" />
+    <PackageReference Include="Dapper" Version="2.1.72" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="10.0.4" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.4" />
+    <PackageReference Include="Microsoft.Extensions.Options" Version="10.0.4" />
+    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="10.0.4" />
+    <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="8.16.0" />
+    <PackageReference Include="MySqlConnector" Version="2.5.0" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.16.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ModularAuth.Application\ModularAuth.Application.csproj" />
+    <ProjectReference Include="..\ModularAuth.Domain\ModularAuth.Domain.csproj" />
   </ItemGroup>
 
   <PropertyGroup>

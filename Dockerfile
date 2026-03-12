@@ -40,6 +40,11 @@ WORKDIR /app
 
 EXPOSE 8080
 
+# Set up environment variables.
+ENV ASPNETCORE_URLS=http://+:8080
+# Change 
+ENV ASPNETCORE_ENVIRONMENT=Development 
+
 COPY --from=publish /app/publish .
 
 RUN adduser --disabled-password --gecos '' appuser
