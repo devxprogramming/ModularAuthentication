@@ -3,7 +3,7 @@ using ModularAuth.Domain.Common;
 using ModularAuth.Infrastructure.Data.DbConnection;
 using Dapper;
 
-namespace ModularAuth.Application.Common;
+namespace ModularAuth.Infrastructure.Data.Repositories.Common;
 
 public abstract class BaseRepository<TEntity> : IBaseRepository<TEntity>
     where TEntity : BaseEntity

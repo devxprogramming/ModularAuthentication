@@ -1,9 +1,8 @@
 using Dapper;
-using ModularAuth.Application.Common;
 using ModularAuth.Application.Interfaces;
 using ModularAuth.Domain.Entities;
-using ModularAuth.Domain.Enums;
 using ModularAuth.Infrastructure.Data.DbConnection;
+using ModularAuth.Infrastructure.Data.Repositories.Common;
 
 namespace ModularAuth.Infrastructure.Data.Repositories;
 
